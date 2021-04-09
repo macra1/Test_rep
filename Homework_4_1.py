@@ -21,6 +21,8 @@ mass = int(input("И ваш вес в килограммах:\n>>> "))
 ibm = mass / height / height
 ibm = round(ibm, 2)
 
+print(f"Ваш индекс массы тела: <{ibm}>\n")
+
 # scale - задаётся маcштаб (кол-во знаков "=" на единицу IBM)
 scale = 0.6
 left_index = int((int(ibm) - 20) * scale)
@@ -30,7 +32,7 @@ answer = "20"
 answer += "=" * left_index
 answer += "|"
 answer += "=" * right_index
-answer += "50"
+answer += "50\n"
 print(answer)
 
 # какая-то инфа с сайта где я смотрел что такое IBM
