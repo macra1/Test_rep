@@ -14,18 +14,19 @@
 
 print("Вас привествует программа для рассчёта Индекса Массы Тела")
 # Для рассчётов нужно метры , но рост обычно измеряется в сантиметрах
-# height = int(input("Введите вас рост в сантиметрах:\n>>> ")) / 100
-# mass = int(input("И ваш вес в килограммах:\n>>> "))
+height = int(input("Введите вас рост в сантиметрах:\n>>> ")) / 100
+mass = int(input("И ваш вес в килограммах:\n>>> "))
 
-# ibm = mass / height / height
-# ibm = round(ibm, 2)
+# Рассчёт IBM и округление до 2-го знака после запятой
+ibm = mass / height / height
+ibm = round(ibm, 2)
 
-ibm = 80/2
+# scale - задаётся маcштаб (кол-во знаков "=" на единицу IBM)
+scale = 0.6
+left_index = int((int(ibm) - 20) * scale)
+right_index = int((50 - int(ibm)) * scale)
 
 answer = "20"
-left_index = int((int(ibm) - 20) * 0.6)
-right_index = int((50 - int(ibm)) * 0.6)
-
 answer += "=" * left_index
 answer += "|"
 answer += "=" * right_index
