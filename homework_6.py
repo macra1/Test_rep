@@ -9,13 +9,13 @@
 """
 
 money = {"admin": 11340, "Вася": 11, "Петя": 17}
-user_login = input("Введите логин: ")
+user_login = (input("Введите логин: ")).lower()
 
 
 # Декоратор
 def auth(func):
     def decorator(user):
-        if user.lower() == "admin":
+        if user == "admin":
             answer = func(user)
             return answer
         else:
@@ -24,9 +24,10 @@ def auth(func):
 
 
 # Функция вывода денег
+@auth
 def my_money(user):
         return money[user]
 
 
-session = auth(my_money)(user_login)
+session = my_money(user_login)
 print(session)
