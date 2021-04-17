@@ -1,0 +1,33 @@
+"""
+1 Написать программу которая: запрашивает у пользователя логин
+2 Есть функция котороя выводит сумму на счете
+3 Декорируем эту функцию декоратором который проверяет если
+ пользовател - админ (получили на первом этапе) то выводит сумму счета 
+ (выполняет функ из п 2)
+4 Если не админ - Сумму не выводить (функцию даже не выполнять) а
+ выводить - доступ запрещен
+"""
+
+money = 100500
+user_login = input("Введите логин: ")
+
+
+# Декоратор
+def auth(func):
+    def decorator(user):
+        if user.lower() == "admin":
+            # print(f"user = {user}; func = {func}")
+            answer = func(user)
+            return answer
+        else:
+            return "ACCES DENIED"
+    return decorator
+
+
+# Функция вывода денег
+def my_money(user):
+        return money
+
+
+session = auth(my_money)(user_login)
+print(session)
