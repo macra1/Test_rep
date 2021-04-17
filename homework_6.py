@@ -8,14 +8,14 @@
  выводить - доступ запрещен
 """
 
-money = {"admin": 11340, "Вася": 11, "Петя": 17}
-user_login = (input("Введите логин: ")).lower()
+money = {"admin": 11340, "админ": 239, "Петя": 17}
+user_login = input("Введите логин: ").lower()
 
 
 # Декоратор
 def auth(func):
     def decorator(user):
-        if user == "admin":
+        if user == "admin" or user == "админ" :
             answer = func(user)
             return answer
         else:
@@ -29,5 +29,5 @@ def my_money(user):
         return money[user]
 
 
-session = my_money(user_login)
+session = auth(my_money)(user_login)
 print(session)
