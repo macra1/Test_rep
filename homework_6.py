@@ -29,5 +29,5 @@ def my_money(user):
         return money[user]
 
 
-session = auth(my_money)(user_login)
+session = my_money(user_login)
 print(session)
