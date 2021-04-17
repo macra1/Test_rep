@@ -8,7 +8,7 @@
  выводить - доступ запрещен
 """
 
-money = 100500
+money = {"admin": 11340, "Вася": 11, "Петя": 17}
 user_login = input("Введите логин: ")
 
 
@@ -16,7 +16,6 @@ user_login = input("Введите логин: ")
 def auth(func):
     def decorator(user):
         if user.lower() == "admin":
-            # print(f"user = {user}; func = {func}")
             answer = func(user)
             return answer
         else:
@@ -26,7 +25,7 @@ def auth(func):
 
 # Функция вывода денег
 def my_money(user):
-        return money
+        return money[user]
 
 
 session = auth(my_money)(user_login)
