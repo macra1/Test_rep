@@ -13,7 +13,6 @@
 
 # Структура: (ID): [(пользователь), (рост), (вес), (шкала БМИ)]
 storage = {1: ["admin", 180, 80, "=1="]}
-print(storage.keys())
 
 
 def main_window():
@@ -26,29 +25,24 @@ def main_window():
 
 
 def user_list():
-    print("1 Список пользователей:")
+    # Выводит список пользователей
+    print("Список пользователей:")
     for elem in storage:
         print(f"{elem}. {storage[elem][0]}")
-    a = input("Нажмите Enter для перехода назад.\n")
 
 
 def user_check(user_id):
-    print(f"Имя пользователя: {storage[user_id][0]}")
+    # Информация о пользователе
+    print(f"\nИмя пользователя: {storage[user_id][0]}")
     print(f"Рость: {storage[user_id][1]}")
     print(f"Вес: {storage[user_id][2]}")
     print(f"Шкала БМИ: {storage[user_id][3]}\n")
 
 
-# def change_user_data(user_id):
-
-
-# def user_delete(user_id):
-
-
-def user_add():
-    name = input("Введите имя >>> ")
-    height = int(input("Рост в см. >>> "))
-    mass = int(input("Вес в кг. >>> "))
+def ibm_calculator(mass, height):
+    # Принимает вес и рост, выводит строку ==|===
+    height /= 100
+    # mass в кг. , height в см.
     ibm = mass / height / height
     ibm = round(ibm, 2)
 
@@ -62,10 +56,45 @@ def user_add():
     line += "|"
     line += "=" * right_index
     line += "50"
+    return line
 
+
+def user_change_data(user_id):
+    # Изменяет данные пользователя
+    print("Изменяем:\n1. Имя\n2. Рост\n3. Вес")
+    choise = int(input(">>>"))
+    if choise == 1:
+        name = input("Введите новое имя: ")
+        storage[user_id][0] = name
+    # Если меня значение роста или веса , то нужно пересчитать IBM
+    elif choise == 2:
+        height = int(input("Введине новый рост в см: "))
+        storage[user_id][1] = height
+        storage[user_id][3] = ibm_calculator(storage[user_id][2], height)
+    elif choise == 3:
+        mass = int(input("Введине новый вес в кг: "))
+        storage[user_id][2] = mass
+        storage[user_id][3] = ibm_calculator(mass, storage[user_id][1])
+    else:
+        print("Введено некорректное число, алярм!")
+
+
+def user_delete(user_id):
+    storage.pop(user_id)
+
+
+def user_add():
+    name = input("Введите имя >>> ")
+    height = int(input("Рост в см. >>> "))
+    mass = int(input("Вес в кг. >>> "))
+
+    # Расчёт IBM
+    line = ibm_calculator(mass, height)
+    # Подготовка ответа
     answer = [name, height, mass, line]
-
-    storage[len(list(storage)) + 1] = answer
+    # Находим место , куда можно записать пользователя
+    position = (list(storage)[-1:][0])
+    storage[position + 1] = answer
 
 
 def main_activity():
@@ -76,18 +105,16 @@ def main_activity():
             user_list()
         elif command == 2:
             user_check(int(input("Введите ID пользователя: ")))
-        # elif command == 3:
-
-        # elif command == 4:
-
+        elif command == 3:
+            user_change_data(int(input("Введите ID пользователя: ")))
+        elif command == 4:
+            user_delete(int(input("Введите ID пользователя: ")))
         elif command == 5:
             user_add()
         elif command == 6:
             print("Хорошего дня :)")
             break
-        else:
-            pass
 
 
-
-main_activity()
+if __name__ == "__main__":
+    main_activity()
