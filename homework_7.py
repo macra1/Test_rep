@@ -51,11 +51,7 @@ def ibm_calculator(mass, height):
     left_index = int((int(ibm) - 20) * scale)
     right_index = int((50 - int(ibm)) * scale)
 
-    line = "20"
-    line += "=" * left_index
-    line += "|"
-    line += "=" * right_index
-    line += "50"
+    line = "20" + "=" * left_index + "|" + "=" * right_index + "50"
     return line
 
 
@@ -98,21 +94,19 @@ def user_add():
 
 
 def main_activity():
+    logic = {1: user_list, 2: user_check, 3: user_change_data, 4: user_delete,
+             5: user_add}
     while True:
         main_window()
         command = int(input(">>> "))
-        if command == 1:
-            user_list()
-        elif command == 2:
-            user_check(int(input("Введите ID пользователя: ")))
-        elif command == 3:
-            user_change_data(int(input("Введите ID пользователя: ")))
-        elif command == 4:
-            user_delete(int(input("Введите ID пользователя: ")))
-        elif command == 5:
-            user_add()
-        elif command == 6:
-            print("Хорошего дня :)")
+
+        if command == 5 or command == 1:
+            logic[command]()
+
+        elif command == 2 or command == 3 or command == 4:
+            logic[command](int(input("Введите ID пользователя: ")))
+
+        else:
             break
 
 
