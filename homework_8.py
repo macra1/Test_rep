@@ -25,13 +25,15 @@ def time_now():
 
 
 # Генератор
+# Он у меня сделан неочень правильно , потому что я неочень понимаю как он
+# работает (генераторы в целом), тут он просто поочерёдно отдаёт "white" и "black" 
 def generator():
     command = {1: white, 2: black}
     for elem in command:
         yield command[elem]
 
 
-# собирает словарь с теперешним временем для последующего перебора
+# собирает словарь с текущим временем для последующего перебора
 # и вывода в цикле
 def some_func():
     led = generator()
@@ -70,7 +72,7 @@ def some_func():
 
 
    
-for a in range(10):
+while True:
     os.system("cls")
     answer = some_func()
     for i in answer:

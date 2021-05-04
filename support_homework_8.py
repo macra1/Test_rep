@@ -1,6 +1,3 @@
-import random
-
-
 black = "\u2B1B"
 white = "\u2B1C"
 
