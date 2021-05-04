@@ -38,7 +38,9 @@ def generator():
 def some_func():
     led = generator()
     answer = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
+    # Счётчик, который 
     count_1 = 0
+    # проверка , на чётность\нечётность секунд
     if time_now()[2] % 2 == 0:
         now_led = black
     else:
@@ -71,14 +73,14 @@ def some_func():
 
 
 
-   
-while True:
-    os.system("cls")
-    answer = some_func()
-    for i in answer:
-        for elem in answer[i]:
-            for item in elem:
-                print(item, end="")
-        print()
-    time.sleep(0.25)
+if __name__ == "__main__":   
+    while True:
+        os.system("cls")
+        answer = some_func()
+        for i in answer:
+            for elem in answer[i]:
+                for item in elem:
+                    print(item, end="")
+            print()
+        time.sleep(0.25)
     
