@@ -7,7 +7,7 @@ num_storage = {
         0: [black, white, white, black],
         1: [white, black, black, white],
         2: [white, black, black, white],
-        3: [black, black, black, black],
+        3: [white, black, black, white],
         4: [white, black, black, white],
         5: [white, black, black, white],
         6: [black, white, white, black]
@@ -97,10 +97,10 @@ num_storage = {
 
 
 if __name__ == "__main__":
-    for elem in numbers:
-        for i in numbers[elem]:
+    for elem in num_storage:
+        for i in num_storage[elem]:
             answer = ""
-            for a in numbers[elem][i]:
+            for a in num_storage[elem][i]:
                 answer += a
             print(answer)
         print()
