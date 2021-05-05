@@ -10,9 +10,6 @@ import time
 from datetime import datetime
 import os
 
-black = "\u2B1B"
-white = "\u2B1C"
-
 
 # Функция при вызове отдаёт время словарём чисел
 # возможно зря
@@ -31,6 +28,12 @@ def generator():
     command = {1: white, 2: black}
     for elem in command:
         yield command[elem]
+
+
+# Функция ставит пробел по всей высоте заданного словаря
+def space(place):
+    for i in place:
+        place[i].append([black])
 
 
 # собирает словарь с текущим временем для последующего перебора
@@ -55,8 +58,7 @@ def some_func():
         for elem in num_storage[first]:
             answer[elem].append(num_storage[first][elem])
         # Добавляем пробел в ответ
-        for elem in answer:
-            answer[elem].append([black])
+        space(answer)
         # Добавляем 2-ю цифру в ответ
         for elem in num_storage[second]:
             answer[elem].append(num_storage[second][elem])
@@ -65,8 +67,7 @@ def some_func():
         # чисел
         if count_1 != 2:
             # Добавляем пробел
-            for elem in answer:
-                answer[elem].append([black])
+            space(answer)
             # На 2-ю и 4-ю позицию ставим мигающую точку (led), на остальные 
             # позиции в столбце ставим "black"
             for elem in answer:
@@ -75,8 +76,7 @@ def some_func():
                 else:
                     answer[elem].append([black])
             # Пробел
-            for elem in answer:
-                answer[elem].append([black])
+            space(answer)
             
             count_1 += 1
     return answer

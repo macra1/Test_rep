@@ -7,7 +7,7 @@ num_storage = {
         0: [black, white, white, black],
         1: [white, black, black, white],
         2: [white, black, black, white],
-        3: [white, black, black, white],
+        3: [black, black, black, black],
         4: [white, black, black, white],
         5: [white, black, black, white],
         6: [black, white, white, black]
